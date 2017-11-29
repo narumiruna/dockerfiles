@@ -11,12 +11,9 @@ RUN apt-get update &&\
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install -U pip &&\
-    # tensorflow
     pip3 install -U tensorflow-gpu &&\
-    # pytorch
     pip3 install -U http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp35-cp35m-manylinux1_x86_64.whl &&\
     pip3 install -U torchvision &&\
-    # 
     pip3 install -U jupyter\
     keras\
     h5py\
