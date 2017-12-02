@@ -8,6 +8,7 @@ RUN apt-get update &&\
     nano\
     git\
     wget\
+    unzip\
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install -U pip &&\
