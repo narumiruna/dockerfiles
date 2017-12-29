@@ -3,6 +3,7 @@ RUN apt-get update &&\
     apt-get install -y\
     python3-dev\
     python3-pip\
+    python3-tk\
     libcupti-dev\
     vim\
     nano\
@@ -17,6 +18,7 @@ RUN pip3 install -U pip &&\
     pip3 install -U jupyter\
     keras\
     h5py\
+    matplotlib\
     && rm -rf ~/.cache/pip
 
 RUN mkdir /notebook
@@ -24,4 +26,3 @@ WORKDIR /notebook
 RUN echo 'jupyter notebook --allow-root --no-browser --ip="*" --notebook-dir="/notebook"' > /run.sh &&\
     chmod +x /run.sh
 CMD /run.sh
-
