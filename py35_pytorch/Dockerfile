@@ -1,4 +1,4 @@
-FROM nvidia/cuda
+FROM nvidia/cuda:8.0-cudnn6-runtime
 RUN apt-get update &&\
     apt-get install -y python3-pip &&\
     rm -rf /var/lib/apt/lists/*
