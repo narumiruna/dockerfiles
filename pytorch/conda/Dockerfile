@@ -24,10 +24,10 @@ RUN useradd -m -s /bin/bash $USER
 USER $USER
 
 RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh -O /tmp/anaconda.sh &&\
-    /bin/bash /tmp/anaconda.sh -b -p ~/conda &&\
+    /bin/bash /tmp/anaconda.sh -b -p /home/$USER/conda &&\
     rm /tmp/anaconda.sh
 
-ENV PATH=~/conda:$PATH
+ENV PATH=/home/$USER/conda/bin:$PATH
 
 RUN conda update -yq --all &&\
     conda install -yq -c pytorch pytorch \
