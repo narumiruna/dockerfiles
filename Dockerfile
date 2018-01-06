@@ -5,6 +5,7 @@ LABEL maintainer="Narumi"
 RUN apt-get update &&\
     apt-get -y dist-upgrade &&\
     apt-get install -y python3-pip \
+                       python3-tk \
                        locales \
                        vim \
                        wget \
