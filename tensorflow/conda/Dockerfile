@@ -26,8 +26,8 @@ ENV PATH=/opt/conda/bin:$PATH
 
 RUN conda update -yq --all &&\
     conda clean -tipsy &&\
-    pip3 install -U pip &&\
-    pip3 install -U tensorflow-gpu &&\
+    pip install -U pip &&\
+    pip install -U tensorflow-gpu &&\
     rm -rf ~/.cache/pip &&\
 
 WORKDIR /workspace
