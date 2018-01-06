@@ -24,7 +24,9 @@ RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh -O
 
 ENV PATH /opt/conda/bin:${PATH}
 
-RUN conda install -y -c pytorch pytorch torchvision &&\
+RUN conda update -yq --all &&\
+    conda install -yq -c pytorch pytorch \
+                                 torchvision &&\
     conda clean -tipsy
 
 WORKDIR /workspace
