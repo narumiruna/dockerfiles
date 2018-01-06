@@ -28,6 +28,6 @@ RUN conda update -yq --all &&\
     conda clean -tipsy &&\
     pip install -U pip &&\
     pip install -U tensorflow-gpu &&\
-    rm -rf ~/.cache/pip &&\
+    rm -rf ~/.cache/pip
 
 WORKDIR /workspace
