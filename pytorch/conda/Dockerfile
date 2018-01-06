@@ -34,4 +34,4 @@ RUN conda update -yq --all &&\
                                  torchvision &&\
     conda clean -tipsy
 
-WORKDIR ~/workspace
+WORKDIR /home/$USER/workspace
