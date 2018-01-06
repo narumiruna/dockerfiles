@@ -18,20 +18,15 @@ ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8
 
-ENV USER=pytorch
-RUN useradd -m -s /bin/bash $USER
-   
-USER $USER
-
 RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh -O /tmp/anaconda.sh &&\
-    /bin/bash /tmp/anaconda.sh -b -p /home/$USER/conda &&\
+    /bin/bash /tmp/anaconda.sh -b -p /opt/conda &&\
     rm /tmp/anaconda.sh
 
-ENV PATH=/home/$USER/conda/bin:$PATH
+ENV PATH=/opt/conda/bin:$PATH
 
 RUN conda update -yq --all &&\
     conda install -yq -c pytorch pytorch \
                                  torchvision &&\
     conda clean -tipsy
 
-WORKDIR /home/$USER/workspace
+WORKDIR /workspace
