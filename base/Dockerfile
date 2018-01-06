@@ -6,7 +6,7 @@ USER root
 
 RUN apt-get update &&\
     apt-get -y dist-upgrade &&\
-    apt-get install -y python-pip \
+    apt-get install -y python3-pip \
                        locales \
                        vim \
                        wget \
