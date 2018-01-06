@@ -1,8 +1,6 @@
-FROM nvidia/cuda:8.0-cudnn6-runtime
+FROM nvidia/cuda:8.0-cudnn6-devel
 
 LABEL maintainer="Narumi"
-
-USER root
 
 RUN apt-get update &&\
     apt-get -y dist-upgrade &&\
@@ -17,6 +15,6 @@ RUN apt-get update &&\
     rm -rf /var/lib/apt/lists/*
 
 RUN locale-gen en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
-ENV LANGUAGE=en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
