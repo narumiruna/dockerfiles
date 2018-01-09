@@ -18,7 +18,8 @@ ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8
 
-RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh -O /tmp/anaconda.sh &&\
+RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh \
+         -O /tmp/anaconda.sh &&\
     /bin/bash /tmp/anaconda.sh -b -p /opt/conda &&\
     rm /tmp/anaconda.sh
 
