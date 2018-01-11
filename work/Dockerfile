@@ -28,4 +28,7 @@ RUN pip3 install -U pip &&\
     rm -rf ~/.cache/pip
 
 WORKDIR /workspace
+RUN echo 'jupyter notebook --allow-root --no-browser --ip="*"' > /tmp/run.sh &&\
+    chmod +x /tmp/run.sh
 
+CMD /tmp/run.sh
