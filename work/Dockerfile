@@ -25,7 +25,8 @@ RUN pip3 install -U pip &&\
                     torchvision \
                     tensorflow-gpu \
                     jupyter \
-                    GPUtil &&\
+                    GPUtil \
+                    ggplot &&\
     rm -rf ~/.cache/pip
 
 WORKDIR /workspace
