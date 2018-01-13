@@ -12,7 +12,8 @@ RUN apt-get update &&\
                        htop \
                        ssh \
                        git \
-                       unzip &&\
+                       unzip \
+                       libcupti-dev &&\
     rm -rf /var/lib/apt/lists/*
 
 RUN locale-gen en_US.UTF-8
