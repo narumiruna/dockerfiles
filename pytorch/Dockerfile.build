@@ -2,23 +2,20 @@ FROM nvidia/cuda:9.0-cudnn7-devel
 
 LABEL maintainer="Narumi"
 
+ENV LANG=C.UTF-8 \
+    LANGUAGE=C.UTF-8 \
+    LC_ALL=C.UTF-8
+
+RUN sed -i 's/archive/tw.archive/g' /etc/apt/sources.list
+
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
-        locales \
-        vim \
+        python3-pip \
+        python3-setuptools \
         wget \
-        htop \
-        iftop \
-        ssh \
-        git \
-        unzip && \
+        git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-RUN locale-gen en_US.UTF-8
-ENV LANG=en_US.UTF-8 \
-    LANGUAGE=en_US.UTF-8 \
-    LC_ALL=en_US.UTF-8
 
 RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh -O /tmp/anaconda.sh && \
     /bin/bash /tmp/anaconda.sh -b -p /opt/conda && \
@@ -26,8 +23,9 @@ RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh -O
 
 ENV PATH=/opt/conda/bin:$PATH
 
-RUN conda update --yes --quiet --all && \
-    conda install --yes --quiet \
+# RUN conda update --yes --quiet --all
+
+RUN conda install --yes --quiet \
         numpy \
         pyyaml \
         mkl \
@@ -38,8 +36,7 @@ RUN conda update --yes --quiet --all && \
         magma-cuda90 && \
     conda clean -tipsy
 
-RUN git clone --recursive https://github.com/pytorch/pytorch.git /tmp/pytorch
-WORKDIR /tmp/pytorch
-RUN python setup.py install
-
-WORKDIR /workspace
+RUN git clone --recursive https://github.com/pytorch/pytorch.git && \
+    cd /pytorch && \
+    python setup.py install && \
+    rm -rf /pytorch
