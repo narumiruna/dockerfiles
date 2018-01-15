@@ -10,8 +10,6 @@ ENV LANG=C.UTF-8 \
 
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
-        python3-pip \
-        python3-setuptools \
         wget \
         git && \
     apt-get clean && \
