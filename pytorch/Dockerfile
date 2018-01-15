@@ -6,8 +6,6 @@ ENV LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8 \
     LC_ALL=C.UTF-8
 
-# RUN sed -i 's/archive/tw.archive/g' /etc/apt/sources.list
-
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
         python3-pip \
