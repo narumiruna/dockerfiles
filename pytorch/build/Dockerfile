@@ -27,8 +27,6 @@ RUN conda install --yes --quiet \
         setuptools \
         cmake \
         cffi && \
-    conda install --yes --quiet -c pytorch \
-        magma-cuda90 && \
     conda clean -tipsy
 
 RUN git clone --recursive https://github.com/pytorch/pytorch.git && \
