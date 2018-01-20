@@ -18,6 +18,7 @@ RUN apt-get update && \
         htop \
         iftop \
         ssh \
+        autossh \
         git \
         unzip \
         libcupti-dev && \
@@ -42,6 +43,6 @@ RUN pip3 install -U pip && \
     rm -rf ~/.cache/pip
 
 WORKDIR /workspace
-RUN echo 'jupyter notebook --allow-root --no-browser --ip="*"' > /tmp/run.sh && \
-    chmod +x /tmp/run.sh
-CMD /tmp/run.sh
+RUN echo 'jupyter notebook --allow-root --no-browser --ip="*"' > /run.sh && \
+    chmod +x /run.sh
+CMD /run.sh
