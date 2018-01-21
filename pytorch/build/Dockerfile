@@ -32,4 +32,10 @@ RUN conda install --yes --quiet \
 RUN git clone --recursive https://github.com/pytorch/pytorch.git && \
     cd /pytorch && \
     python setup.py install && \
-    rm -rf /pytorch
+    cd / && \
+    rm -rf /pytorch && \
+    git clone https://github.com/pytorch/vision.git && \
+    cd /vision && \
+    python setup.py install && \
+    cd / && \
+    rm -rf /vision
