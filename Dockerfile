@@ -8,6 +8,8 @@ ENV LANG=C.UTF-8 \
 
 # RUN sed -i 's/archive/tw.archive/g' /etc/apt/sources.list
 
+COPY sources.list /etc/apt
+
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
         python3-pip \
