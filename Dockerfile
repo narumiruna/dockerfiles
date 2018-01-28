@@ -7,20 +7,18 @@ ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
 COPY sources.list /etc/apt
-RUN apt-get update && \
-    apt-get install -y python3-pip \
-                       python3-setuptools \
-                       python3-tk \
-                       vim \
-                       wget \
-                       htop \
-                       iftop \
-                       ssh \
-                       autossh \
-                       git \
-                       unzip \
-                       libcupti-dev && \
-    apt-get clean && \
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-tk \
+    vim \
+    wget \
+    htop \
+    iftop \
+    ssh \
+    autossh \
+    git \
+    unzip \
+    libcupti-dev && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /
