@@ -7,7 +7,9 @@ ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
 COPY sources.list /etc/apt
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get dist-upgrade -y && \
+    apt-get install -y \
         locales \
         python3-pip \
         python3-tk \
@@ -25,7 +27,8 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt /
 RUN pip3 install -U pip && \
     pip3 install -U -r requirements.txt && \
-    rm -rf ~/.cache/pip
+    rm -rf ~/.cache/pip && \
+    rm /requirements.txt
 
 WORKDIR /workspace
 RUN echo 'jupyter notebook --allow-root --no-browser --ip="*"' > /run.sh && \
