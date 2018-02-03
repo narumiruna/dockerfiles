@@ -31,6 +31,9 @@ RUN pip3 install -U pip && \
     rm -rf ~/.cache/pip && \
     rm /requirements.txt
 
+COPY vimrc /root/.vimrc
+RUN git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim
+
 WORKDIR /workspace
 RUN echo 'jupyter notebook --allow-root --no-browser --ip="*"' > /run.sh && \
     chmod +x /run.sh
