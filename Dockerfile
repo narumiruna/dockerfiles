@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn6-devel
+FROM nvidia/cuda:9.0-cudnn7-devel
 
 LABEL maintainer="Narumi"
 
@@ -7,8 +7,8 @@ ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
 COPY sources.list /etc/apt
+
 RUN apt-get update && \
-    apt-get dist-upgrade -y && \
     apt-get install -y \
         locales \
         sudo \
@@ -22,6 +22,7 @@ RUN apt-get update && \
         autossh \
         git \
         unzip \
+        zsh \
         libcupti-dev && \
     rm -rf /var/lib/apt/lists/*
 
@@ -32,7 +33,11 @@ RUN pip3 install -U pip && \
     rm /requirements.txt
 
 COPY vimrc /root/.vimrc
-RUN git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim
+RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+COPY zshrc /root/.zshrc
+RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh && \
+    chsh -s /usr/bin/zsh
 
 WORKDIR /workspace
 RUN echo 'jupyter notebook --allow-root --no-browser --ip="*"' > /run.sh && \

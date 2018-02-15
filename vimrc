@@ -41,3 +41,5 @@ set foldlevel=100 " open all folds
 " set paste " paste mode
 set copyindent " copy the structure of the existing line indent when autoindent a new line
 " set preserveindent " When changing the indent of the current line, preserve as much of the indent structure as possible.
+set clipboard=unnamed " macos clipboard sharing
+set mouse+=a " set mouse in all previous modes
