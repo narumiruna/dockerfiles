@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn6-devel
+FROM nvidia/cuda:9.1-cudnn7-devel
 
 LABEL maintainer="Narumi"
 
@@ -6,29 +6,31 @@ ENV LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8 \
     LC_ALL=C.UTF-8
 
+RUN sed -i 's/archive/tw.archive/g' /etc/apt/sources.list
+
 RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-        ca-certificates \
-        wget \
-        git && \
-    apt-get clean && \
+    apt-get install -y \
+        python3-pip \
+        git \
+        cmake && \
     rm -rf /var/lib/apt/lists/*
 
-RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /conda.sh && \
-    sh /conda.sh -b -p /opt/conda && \
-    rm /conda.sh
+RUN pip3 install -U pip & \
+    pip3 install -U numpy && \
+    pip3 install -U \
+        git+https://github.com/pytorch/pytorch.git#egg=torch \
+        git+https://github.com/pytorch/vision.git#egg=torchvision && \
+    rm -rf ~/.cache/pip
 
-ENV PATH=/opt/conda/bin:$PATH
 
-RUN conda install --yes --quiet \
-        numpy \
-        pyyaml \
-        mkl \
-        setuptools \
-        cmake \
-        cffi && \
-    conda clean -tipsy
 
-RUN pip install -U git+https://github.com/pytorch/pytorch.git#egg=torch && \
-    pip install -U git+https://github.com/pytorch/vision.git#egg=torchvision
+
+
+
+
+
+
+
+
+
 
