@@ -29,13 +29,6 @@ RUN conda install --yes --quiet \
         cffi && \
     conda clean -tipsy
 
-RUN git clone --recursive https://github.com/pytorch/pytorch.git && \
-    cd /pytorch && \
-    python setup.py install && \
-    cd / && \
-    rm -rf /pytorch && \
-    git clone https://github.com/pytorch/vision.git && \
-    cd /vision && \
-    python setup.py install && \
-    cd / && \
-    rm -rf /vision
+RUN pip install -U git+https://github.com/pytorch/pytorch.git#egg=torch && \
+    pip install -U git+https://github.com/pytorch/vision.git#egg=torchvision
+
