@@ -3,5 +3,5 @@
 ## Usage
 ```
 $ docker build -t deluge .
-$ docker run -d -v ~/Downloads:/root/Downloads -p 8112:8112 deluge deluge-web
+$ docker run -d -v ~/Downloads:/root/Downloads -v ~/.config:/root/.config -p 8112:8112 deluge deluge-web
 ```
