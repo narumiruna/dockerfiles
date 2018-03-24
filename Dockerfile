@@ -2,9 +2,9 @@ FROM nvidia/cuda:9.0-cudnn7-devel
 
 LABEL maintainer="Narumi"
 
-ENV LANG=C.UTF-8 \
-    LANGUAGE=C.UTF-8 \
-    LC_ALL=C.UTF-8
+ENV LANG C.UTF-8
+ENV LANGUAGE C.UTF-8
+ENV LC_ALL C.UTF-8
 
 COPY sources.list /etc/apt
 
