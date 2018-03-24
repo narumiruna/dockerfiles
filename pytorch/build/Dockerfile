@@ -6,8 +6,6 @@ ENV LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8 \
     LC_ALL=C.UTF-8
 
-RUN sed -i 's/archive/tw.archive/g' /etc/apt/sources.list
-
 RUN apt-get update && \
     apt-get install -y \
         python3-pip \
@@ -21,16 +19,3 @@ RUN pip3 install -U pip & \
         git+https://github.com/pytorch/pytorch.git#egg=torch \
         git+https://github.com/pytorch/vision.git#egg=torchvision && \
     rm -rf ~/.cache/pip
-
-
-
-
-
-
-
-
-
-
-
-
-
