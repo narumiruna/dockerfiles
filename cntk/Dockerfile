@@ -17,17 +17,21 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/intel/mkl-dnn.git /tmp/mkl-dnn \
-    && (cd /tmp/mkl-dnn/scripts \
+# Install MKL-DNN
+ENV MKL_DNN_VERSION 0.13
+RUN (cd /tmp \
+    && wget -q https://github.com/intel/mkl-dnn/archive/v${MKL_DNN_VERSION}.tar.gz \
+    && tar -xvf v${MKL_DNN_VERSION}.tar.gz \
+    && cd mkl-dnn-${MKL_DNN_VERSION}/scripts \
     && ./prepare_mkl.sh \
     && cd .. \
     && mkdir -p build \
     && cd build \
     && cmake .. \
-    && make \
-    && make install )\
+    && make install) \
     && rm -rf /tmp
 
+# Install CNTK
 RUN pip3 install -U pip \
     && pip3 install https://cntk.ai/PythonWheel/GPU/cntk_gpu-2.5-cp35-cp35m-linux_x86_64.whl \
     && rm -rf ~/.cache/pip
