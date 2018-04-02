@@ -10,11 +10,11 @@ RUN sed -i 's/archive/tw.archive/g' /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
     cmake \
-    curl \
     git \
     libiomp-dev \
     libopenmpi-dev \
     python3-pip \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 # Install MKL-DNN
