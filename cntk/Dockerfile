@@ -10,7 +10,6 @@ RUN sed -i 's/archive/tw.archive/g' /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
     cmake \
-    git \
     libiomp-dev \
     libopenmpi-dev \
     python3-pip \
