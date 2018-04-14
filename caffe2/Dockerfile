@@ -21,17 +21,16 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install -U pip \
-    && pip3 install -U \
+RUN pip3 install -U \
     future \
     numpy \
     protobuf \
     && rm -rf ~/.cache/pip
 
-RUN ( cd /tmp \
-    git clone --recursive https://github.com/pytorch/pytorch.git && cd pytorch \
+RUN cd /tmp \
+    && git clone --recursive https://github.com/pytorch/pytorch.git && cd pytorch \
     && git submodule update --init \
     && mkdir build && cd build \
-    && cmake .. \
-    && make install ) \
+    && cmake -DPYTHON_EXECUTABLE=$(which python3) .. \
+    && make -j$(nproc) install \
     && rm -rf /tmp/*
