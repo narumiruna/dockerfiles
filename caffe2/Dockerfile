@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.0-cudnn7-runtime
+FROM nvidia/cuda:9.0-cudnn7-devel
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -29,7 +29,6 @@ RUN pip3 install -U \
 
 RUN cd /tmp \
     && git clone --recursive https://github.com/pytorch/pytorch.git && cd pytorch \
-    && git submodule update --init \
     && mkdir build && cd build \
     && cmake -DPYTHON_EXECUTABLE=$(which python3) .. \
     && make -j$(nproc) install \
