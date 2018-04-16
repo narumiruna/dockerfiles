@@ -27,9 +27,12 @@ RUN pip3 install -U \
     protobuf \
     && rm -rf ~/.cache/pip
 
-RUN cd /tmp \
-    && git clone --recursive https://github.com/pytorch/pytorch.git && cd pytorch \
-    && mkdir build && cd build \
-    && cmake $(python ./scripts/get_python_cmake_flags.py) .. \ 
+RUN git clone --recursive https://github.com/pytorch/pytorch.git /tmp/pytorch
+
+RUN mkdir -p /tmp/pytorch/build \
+    && cd /tmp/pytorch/build \   
+    && cmake \
+       -DPYTHON_EXECUTABLE=$(which python3) \
+       $(python3 ../scripts/get_python_cmake_flags.py) .. \
     && make -j$(nproc) install \
     && rm -rf /tmp/*
