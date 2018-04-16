@@ -30,6 +30,6 @@ RUN pip3 install -U \
 RUN cd /tmp \
     && git clone --recursive https://github.com/pytorch/pytorch.git && cd pytorch \
     && mkdir build && cd build \
-    && cmake -DPYTHON_EXECUTABLE=$(which python3) .. \
+    && cmake $(python ./scripts/get_python_cmake_flags.py) .. \ 
     && make -j$(nproc) install \
     && rm -rf /tmp/*
