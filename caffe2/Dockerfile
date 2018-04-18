@@ -21,15 +21,19 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install -U \
+RUN pip3 install -U pip==9.0.3 \
+    && pip3 install -U \
     future \
     numpy \
     protobuf \
     && rm -rf ~/.cache/pip
 
-RUN cd /tmp \
-    && git clone --recursive https://github.com/pytorch/pytorch.git && cd pytorch \
-    && mkdir build && cd build \
-    && cmake -DPYTHON_EXECUTABLE=$(which python3) .. \
-    && make -j$(nproc) install \
-    && rm -rf /tmp/*
+RUN git clone --recursive https://github.com/pytorch/pytorch.git /tmp/pytorch
+RUN mkdir -p /tmp/pytorch/build \
+    && ( cd /tmp/pytorch/build \
+    && cmake -DPYTHON_EXECUTABLE=$(which python3) $(python3 ../scripts/get_python_cmake_flags.py) .. \
+    && make -j$(nproc) install ) \
+    && rm -rf /tmp/* \
+    && ldconfig
+
+RUN ln -s /usr/local/lib/python3/dist-packages/caffe2 /usr/local/lib/python3.5/dist-packages/caffe2
