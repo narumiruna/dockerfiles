@@ -28,9 +28,8 @@ RUN pip3 install -U pip==9.0.3 \
     protobuf \
     && rm -rf ~/.cache/pip
 
-RUN git clone --recursive https://github.com/pytorch/pytorch.git /tmp/pytorch
-
-RUN mkdir -p /tmp/pytorch/build \
+RUN git clone --recursive https://github.com/pytorch/pytorch.git /tmp/pytorch \
+    && mkdir -p /tmp/pytorch/build \
     && ( cd /tmp/pytorch/build \   
     && cmake -DPYTHON_EXECUTABLE=$(which python3) .. \ 
     && make -j$(nproc) install ) \
