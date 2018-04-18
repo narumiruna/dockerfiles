@@ -28,6 +28,7 @@ RUN pip3 install -U pip==9.0.3 \
     protobuf \
     && rm -rf ~/.cache/pip
 
-RUN git clone --recursive https://github.com/pytorch/pytorch.git /tmp/pytorch
-RUN cd /tmp/pytorch \
-    && python3 setup_caffe2.py install
+RUN git clone --recursive https://github.com/pytorch/pytorch.git /tmp/pytorch \
+    && (cd /tmp/pytorch \
+    && python3 setup_caffe2.py install) \
+    && rm -rf /tmp/*
