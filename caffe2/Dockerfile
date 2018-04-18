@@ -31,7 +31,9 @@ RUN pip3 install -U pip==9.0.3 \
 RUN git clone --recursive https://github.com/pytorch/pytorch.git /tmp/pytorch
 RUN mkdir -p /tmp/pytorch/build \
     && ( cd /tmp/pytorch/build \
-    && cmake -DPYTHON_EXECUTABLE=$(which python3) $(python3 ../scripts/get_python_cmake_flags.py) .. \
+    && cmake \
+    -DPYTHON_EXECUTABLE=$(which python3) \
+    $(python3 ../scripts/get_python_cmake_flags.py) .. \
     && make -j$(nproc) install ) \
     && rm -rf /tmp/* \
     && ldconfig
