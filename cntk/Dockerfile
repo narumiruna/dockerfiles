@@ -28,7 +28,7 @@ RUN (cd /tmp \
     && cd build \
     && cmake .. \
     && make install) \
-    && rm -rf /tmp
+    && rm -rf /tmp/*
 
 # Install CNTK
 RUN pip3 install -U pip \
