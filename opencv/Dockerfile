@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
 ENV OPENCV_VERSION 3.4.1
 ENV OPENCV_CONTRIB_VERSION 3.4.1
 
-RUN ( cd /tmp \
+RUN (cd /tmp \
     && wget --quiet -O- https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz | tar -xz \
     && wget --quiet -O- https://github.com/opencv/opencv_contrib/archive/${OPENCV_CONTRIB_VERSION}.tar.gz | tar -xz \
     && mkdir -p opencv-${OPENCV_VERSION}/build \
@@ -45,5 +45,5 @@ RUN ( cd /tmp \
     -DPYTHON3_EXECUTABLE=$(which python3) \
     -DWITH_CUDA=ON \
     .. \
-    && make -j$(nproc) install ) \
+    && make -j$(nproc) install) \
     && rm -rf /tmp/*
