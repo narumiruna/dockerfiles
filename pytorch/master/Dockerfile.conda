@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn6-devel
+FROM nvidia/cuda:9.0-cudnn7-devel
 
 LABEL maintainer="Narumi"
 
@@ -12,9 +12,9 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /conda.sh \
-    && sh /conda.sh -b -p /opt/conda \
-    && rm /conda.sh
+RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda.sh \
+    && sh conda.sh -b -p /opt/conda \
+    && rm conda.sh
 
 ENV PATH=/opt/conda/bin:$PATH
 
