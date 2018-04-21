@@ -31,7 +31,7 @@ RUN (cd /tmp \
     && rm -rf /tmp/*
 
 # Install CNTK
-RUN pip3 install -U pip \
+RUN pip3 install -U pip==9.0.3 \
     && pip3 install https://cntk.ai/PythonWheel/GPU/cntk_gpu-2.5-cp35-cp35m-linux_x86_64.whl \
     && rm -rf ~/.cache/pip
 

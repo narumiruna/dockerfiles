@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN curl https://rclone.org/install.sh | bash
 
-RUN pip install -U pip \
+RUN pip install -U pip==9.0.3 \
     && pip install flexget \
     && rm -rf ~/.cache/pip
 

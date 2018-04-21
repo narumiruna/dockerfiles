@@ -48,7 +48,7 @@ RUN (cd /tmp \
     && rm -rf /tmp/*
 
 # Install darkflow
-RUN pip3 install -U pip && \
+RUN pip3 install -U pip==9.0.3 && \
     pip3 install -U \
     tensorflow==1.5.0 \
     cython && \
