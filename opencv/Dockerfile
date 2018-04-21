@@ -29,22 +29,21 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install OpenCV
-WORKDIR /tmp
 ENV OPENCV_VERSION 3.4.1
 ENV OPENCV_CONTRIB_VERSION 3.4.1
-RUN wget --quiet -O- https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz | tar -xz
-RUN wget --quiet -O- https://github.com/opencv/opencv_contrib/archive/${OPENCV_CONTRIB_VERSION}.tar.gz | tar -xz
 
-WORKDIR /tmp/opencv-${OPENCV_VERSION}/build
-RUN cmake \
+RUN ( cd /tmp \
+    && wget --quiet -O- https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz | tar -xz \
+    && wget --quiet -O- https://github.com/opencv/opencv_contrib/archive/${OPENCV_CONTRIB_VERSION}.tar.gz | tar -xz \
+    && mkdir -p opencv-${OPENCV_VERSION}/build \
+    && cd opencv-${OPENCV_VERSION}/build \
+    && cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr/local \
     -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_CONTRIB_VERSION}/modules \
     -DBUILD_opencv_python3=ON \
     -DPYTHON3_EXECUTABLE=$(which python3) \
-    -DWITH_CUDA=OFF \
-    ..
-
-RUN make -j$(nproc) install
-WORKDIR /
-RUN rm -rf /tmp/*
+    -DWITH_CUDA=ON \
+    .. \
+    && make -j$(nproc) install ) \
+    && rm -rf /tmp/*
