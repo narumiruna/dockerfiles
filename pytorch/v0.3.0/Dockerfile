@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.1-cudnn7-devel
+FROM nvidia/cuda:9.0-cudnn7-devel
 
 LABEL maintainer="Narumi"
 
@@ -12,6 +12,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip3 install -U pip==9.0.3 \
     && pip3 install -U \
-    http://download.pytorch.org/whl/cu91/torch-0.3.0-cp35-cp35m-linux_x86_64.whl \
+    http://download.pytorch.org/whl/cu90/torch-0.3.0-cp35-cp35m-linux_x86_64.whl \
     torchvision \
     && rm -rf ~/.cache/pip
