@@ -11,7 +11,7 @@ build-%: %/Dockerfile
 build: $(BUILD_TARGETS)
 
 push-%: %/Dockerfile
-	docker push $(PREFIX)/$*
+	docker push $(PREFIX)/pytorch:$*
 
 push: $(PUSH_TARGETS)
 
