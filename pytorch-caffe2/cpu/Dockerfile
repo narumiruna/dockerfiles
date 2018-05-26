@@ -36,11 +36,6 @@ RUN git clone --recursive https://github.com/pytorch/pytorch.git /tmp/pytorch \
     && python3 setup_caffe2.py install) \
     && rm -rf /tmp/*
 
-# RUN git clone --recursive https://github.com/pytorch/pytorch.git /tmp/pytorch \
-#     && (cd /tmp/pytorch \
-#     && python3 setup.py install) \
-#     && rm -rf /tmp/*
-
 RUN pip3 install http://download.pytorch.org/whl/cpu/torch-0.4.0-cp35-cp35m-linux_x86_64.whl \
     && pip3 install torchvision \
     && rm -rf ~/.cache/pip
