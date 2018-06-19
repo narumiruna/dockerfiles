@@ -24,13 +24,6 @@ export EDITOR=vim
 export PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64
 
-# prompt context
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-  fi
-}
-
 # python
 alias python=python3
 alias pip=pip3
