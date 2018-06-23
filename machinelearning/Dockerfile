@@ -12,15 +12,15 @@ RUN echo 'deb mirror://mirrors.ubuntu.com/mirrors.txt xenial main restricted uni
     && echo 'deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-security main restricted universe multiverse' >> /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
-    python3-pip \
-    vim \
-    wget \
+    git \
     htop \
     iftop \
-    git \
-    unzip \
-    zsh \
     libcupti-dev \
+    python3-pip \
+    unzip \
+    vim \
+    wget \
+    zsh \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /
