@@ -27,7 +27,6 @@ RUN pip3 install -U pip==9.0.3 \
     && pip3 install -U \
     beautifulsoup4 \
     bokeh \
-    GPUtil \
     h5py \
     http://download.pytorch.org/whl/cu90/torch-0.4.0-cp35-cp35m-linux_x86_64.whl \
     jupyter \
@@ -38,7 +37,7 @@ RUN pip3 install -U pip==9.0.3 \
     scikit-image \
     scikit-learn \
     tablib \
-    tensorflow-gpu \
+    tensorflow-gpu==1.8.0 \
     torchvision \
     && rm -rf ~/.cache/pip
 
