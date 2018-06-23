@@ -12,16 +12,11 @@ RUN echo 'deb mirror://mirrors.ubuntu.com/mirrors.txt xenial main restricted uni
     && echo 'deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-security main restricted universe multiverse' >> /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
-    locales \
-    sudo \
     python3-pip \
-    python3-tk \
     vim \
     wget \
     htop \
     iftop \
-    ssh \
-    autossh \
     git \
     unzip \
     zsh \
