@@ -49,7 +49,7 @@ RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh \
     && chsh -s /usr/bin/zsh
 
 WORKDIR /workspace
-RUN echo 'jupyter notebook --allow-root --no-browser --ip="*"' > /run.sh\
+RUN echo 'jupyter notebook --allow-root --no-browser --ip="*"' > /run.sh \
     && chmod +x /run.sh
 
 CMD /run.sh
