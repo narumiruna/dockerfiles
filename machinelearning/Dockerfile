@@ -25,7 +25,22 @@ RUN apt-get update && apt-get install -y \
 
 COPY requirements.txt /
 RUN pip3 install -U pip==9.0.3 \
-    && pip3 install -U -r requirements.txt \
+    && pip3 install -U \
+    beautifulsoup4 \
+    bokeh \
+    GPUtil \
+    h5py \
+    http://download.pytorch.org/whl/cu90/torch-0.4.0-cp35-cp35m-linux_x86_64.whl \
+    jupyter \
+    keras \
+    matplotlib \
+    pandas \
+    requests \
+    scikit-image \
+    scikit-learn \
+    tablib \
+    tensorflow-gpu \
+    torchvision \
     && rm -rf ~/.cache/pip \
     && rm /requirements.txt
 
