@@ -29,9 +29,6 @@ RUN pip3 install -U pip==9.0.3 \
     && rm -rf ~/.cache/pip \
     && rm /requirements.txt
 
-COPY vimrc /root/.vimrc
-RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
 COPY zshrc /root/.zshrc
 RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh \
     && chsh -s /usr/bin/zsh
