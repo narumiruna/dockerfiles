@@ -23,6 +23,42 @@ RUN apt-get update && apt-get install -y \
     zsh \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    libavcodec-dev \
+    libavformat-dev \
+    libdc1394-22-dev \
+    libjasper-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libswscale-dev \
+    libtbb-dev \
+    libtiff-dev \
+    pkg-config \
+    python3-numpy \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install OpenCV
+ENV OPENCV_VERSION 3.4.1
+ENV OPENCV_CONTRIB_VERSION 3.4.1
+
+RUN (cd /tmp \
+    && wget --quiet -O- https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz | tar -xz \
+    && wget --quiet -O- https://github.com/opencv/opencv_contrib/archive/${OPENCV_CONTRIB_VERSION}.tar.gz | tar -xz \
+    && mkdir -p opencv-${OPENCV_VERSION}/build \
+    && cd opencv-${OPENCV_VERSION}/build \
+    && cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr/local \
+    -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_CONTRIB_VERSION}/modules \
+    -DBUILD_opencv_python3=ON \
+    -DPYTHON3_EXECUTABLE=$(which python3) \
+    -DWITH_CUDA=ON \
+    .. \
+    && make -j$(nproc) install) \
+    && rm -rf /tmp/*
+
 RUN pip3 install -U pip==9.0.3 \
     && pip3 install -U \
     beautifulsoup4 \
