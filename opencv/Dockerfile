@@ -25,11 +25,10 @@ RUN apt-get update && apt-get install -y \
     libtbb-dev \
     libtiff-dev \
     pkg-config \
+    python3-numpy \
     python3-pip \
     wget \
     && rm -rf /var/lib/apt/lists/*
-
-RUN pip3 install -U numpy
 
 # Install OpenCV
 ENV OPENCV_VERSION 3.4.1
