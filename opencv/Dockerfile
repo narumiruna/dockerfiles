@@ -17,16 +17,13 @@ RUN apt-get update && apt-get install -y \
     git \
     libavcodec-dev \
     libavformat-dev \
-    libavresample-dev \
     libdc1394-22-dev \
     libjasper-dev \
     libjpeg-dev \
-    libopenexr-dev \
     libpng-dev \
     libswscale-dev \
     libtbb-dev \
     libtiff-dev \
-    libwebp-dev \
     pkg-config \
     python3-pip \
     wget \
