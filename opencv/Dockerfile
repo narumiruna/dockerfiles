@@ -17,20 +17,19 @@ RUN apt-get update && apt-get install -y \
     git \
     libavcodec-dev \
     libavformat-dev \
+    libavresample-dev \
     libdc1394-22-dev \
     libjasper-dev \
     libjpeg-dev \
+    libopenexr-dev \
     libpng-dev \
     libswscale-dev \
     libtbb-dev \
-    libtbb2 \
     libtiff-dev \
+    libwebp-dev \
     pkg-config \
     python3-pip \
     wget \
-    libavresample-dev \
-    libwebp-dev \
-    libopenexr-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install -U numpy
