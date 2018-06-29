@@ -1,4 +1,4 @@
-FROM ubuntu:16.04 
+FROM nvidia/cuda:9.0-cudnn7-devel
 
 LABEL maintainer="Narumi"
 
@@ -45,7 +45,7 @@ RUN (cd /tmp \
     -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_CONTRIB_VERSION}/modules \
     -DBUILD_opencv_python3=ON \
     -DPYTHON3_EXECUTABLE=$(which python3) \
-    -DWITH_CUDA=OFF \
+    -DWITH_CUDA=ON \
     .. \
     && make -j$(nproc) install) \
     && rm -rf /tmp/*
