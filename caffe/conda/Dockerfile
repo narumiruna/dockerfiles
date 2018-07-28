@@ -4,20 +4,31 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     cmake \
     git \
-    wget \
     && rm -rf /var/lib/apt/lists/*
 
 RUN conda install --yes --quiet \
     boost \
     gflags \
     glog \
+    h5py \
     hdf5 \
+    ipython \
     leveldb \
     lmdb \
+    matplotlib \
     mkl-include \
+    networkx \
+    nose \
     opencv \
+    pandas \
+    pillow \
     protobuf \
+    python-gflags \
     python-lmdb \
+    pyyaml \
+    scikit-image \
+    scipy \
+    six \
     && conda clean -tipsy
 
 ENV CAFFE_ROOT=/opt/caffe
