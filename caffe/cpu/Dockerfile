@@ -57,6 +57,7 @@ RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . \
     && mkdir build \
     && cd build \
     && cmake -DCPU_ONLY=1 -Dpython_version=3 .. \
+    && make runtest && make pytest \
     && make -j$(nproc)
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
