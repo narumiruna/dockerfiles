@@ -23,6 +23,7 @@ RUN pip3 install pip==9.0.3 && pip3 install \
     numpy==1.14.3 \
     requests==2.18.4 \
     six==1.11.0 \
+    keyring==13.2.1 \
     && rm -rf ~/.cache/pip
 
 WORKDIR /workspace
