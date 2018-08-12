@@ -16,14 +16,13 @@ RUN echo 'deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ bioni
 
 RUN pip3 install pip==9.0.3 && pip3 install \
     azure-mgmt-batchai==2.0.0 \
-    azure==2.0.0 \
     futures==3.1.1 \
     jsonschema==2.6.0 \
     jupyter \
     numpy==1.14.3 \
     requests==2.18.4 \
     six==1.11.0 \
-    keyring==13.2.1 \
+    && pip3 install azure==2.0.0 \
     && rm -rf ~/.cache/pip
 
 WORKDIR /workspace
