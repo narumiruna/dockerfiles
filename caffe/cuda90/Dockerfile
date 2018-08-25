@@ -1,9 +1,10 @@
-FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 
 ENV LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8 \
     LC_ALL=C.UTF-8
 
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     cmake \
@@ -61,7 +62,14 @@ ENV CLONE_TAG=1.0
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . \
     && mkdir build \
     && cd build \
-    && cmake -DUSE_CUDNN=1 -DUSE_NCCL=1 -Dpython_version=3 .. \
+    && cmake \
+    -DUSE_CUDNN=1 \
+    -DUSE_NCCL=1 \
+    -DCUDA_ARCH_NAME=Manual \
+    -DCUDA_ARCH_BIN="30 35 50 52 60 61" \
+    -DCUDA_ARCH_PTX="61" \
+    -Dpython_version=3 \
+    .. \
     && make -j$(nproc)
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python

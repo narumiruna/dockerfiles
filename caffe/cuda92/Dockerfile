@@ -1,12 +1,8 @@
 FROM nvidia/cuda:9.2-cudnn7-devel-ubuntu18.04
 
-LABEL maintainer Narumi
-
-ENV LANG C.UTF-8
-ENV LANGUAGE C.UTF-8
-ENV LC_ALL C.UTF-8
-
-RUN sed -i 's/archive/tw.archive/g' /etc/apt/sources.list
+ENV LANG=C.UTF-8 \
+    LANGUAGE=C.UTF-8 \
+    LC_ALL=C.UTF-8
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
