@@ -21,14 +21,14 @@ RUN curl -o ~/miniconda.sh -O https://repo.continuum.io/miniconda/Miniconda3-lat
 ENV PATH /opt/conda/bin:$PATH
 
 RUN conda install -y python=$PYTHON_VERSION numpy pyyaml scipy ipython mkl mkl-include ninja cython typing \
-    && conda install -y -c pytorch magma-cuda100 \
     && conda clean -ya
 
 RUN TORCH_CUDA_ARCH_LIST="3.5 5.2 6.0 6.1 7.0+PTX" \
     TORCH_NVCC_FLAGS="-Xfatbin -compress-all" \
     CMAKE_PREFIX_PATH="$(dirname $(which conda))/../" \
     pip install -v -U git+https://github.com/pytorch/pytorch.git@${TORCH_VERSION}#egg=torch \
-    && pip install -v -U git+https://github.com/pytorch/vision.git@${TORCHVISION_VERSION}#egg=torchvision
+    && pip install -v -U git+https://github.com/pytorch/vision.git@${TORCHVISION_VERSION}#egg=torchvision \
+    && rm -rf ~/.cache/pip
 
 WORKDIR /workspace
 RUN chmod -R a+w .
