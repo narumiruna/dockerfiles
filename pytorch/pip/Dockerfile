@@ -1,12 +1,6 @@
-FROM nvidia/cuda:9.1-cudnn7-devel
+FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
 
-LABEL maintainer="Narumi"
-
-ENV LANG C.UTF-8
-ENV LANGUAGE C.UTF-8
-ENV LC_ALL C.UTF-8
-
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     cmake \
     git \
     python3-pip \
