@@ -1,4 +1,6 @@
-FROM ubuntu
+ARG BASE_IMAGE=ubuntu
+
+FROM $BASE_IMAGE
 
 RUN apt-get update && apt-get install -y \
     curl \
