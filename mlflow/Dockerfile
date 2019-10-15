@@ -9,5 +9,5 @@ ENV HOST 0.0.0.0
 ENV PORT 5000
 ENV WORKERS 4
 
-RUN echo mlflow server --default-artifact-root $URI --host $HOST --port $PORT --workers $WORKERS > run.sh
-CMD bash run.sh
+RUN echo mlflow server --default-artifact-root $URI --host $HOST --port $PORT --workers $WORKERS > /run.sh
+CMD /run.sh
