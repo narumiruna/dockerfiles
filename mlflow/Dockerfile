@@ -6,6 +6,4 @@ RUN pip3 install -U pip \
 
 EXPOSE 5000
 
-ENTRYPOINT ["mlflow"]
-CMD ["server", "--host", "0.0.0.0"]
-
+ENTRYPOINT ["mlflow", "server", "--host", "0.0.0.0"]
